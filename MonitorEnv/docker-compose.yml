@@ -1,0 +1,25 @@
+services:
+  ShippingService:
+    image: soekopaacykel/shipping-service:latest
+    environment:
+      - Deliverys=/forsendelser
+      - RabbitHost=rabbitmq
+    ports:
+      - "5001:8080"
+   
+
+  loki:
+    image: grafana/loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    
+
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    
+networks:
+  haav:
